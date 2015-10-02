@@ -2,16 +2,21 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class MarioController : MonoBehaviour
+{
+    public float speed;
 
+    private Rigidbody2D rb;
 
     // Use this for initialization
-    void Start () {
-
+    void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         // horizontal move
         float moveHorizontal = Input.GetAxis("Horizontal");
 
@@ -19,8 +24,8 @@ public class PlayerController : MonoBehaviour {
         bool moveUp = Input.GetButton("Jump");
         float amountMoveUp;
         if (moveUp)
-        { 
-            amountMoveUp = 3;
+        {
+            amountMoveUp = 1;
         }
         else
         {
@@ -28,7 +33,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         // 
-        Vector2 movement = new Vector2 (moveHorizontal,amountMoveUp);
+        Vector2 movement = new Vector2(moveHorizontal, amountMoveUp);
+        rb.AddForce(movement * speed);
 
     }
 }
