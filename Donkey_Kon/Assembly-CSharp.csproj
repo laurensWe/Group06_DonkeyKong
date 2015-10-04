@@ -45,12 +45,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-     <Compile Include="Assets\Scripts\MarioController.cs" />
-=======
      <Compile Include="Assets\Boss_AI.cs" />
-     <Compile Include="Assets\PlayerControler.cs" />
->>>>>>> origin/master
+     <Compile Include="Assets\Scripts\LadderController.cs" />
+     <Compile Include="Assets\Scripts\MarioController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

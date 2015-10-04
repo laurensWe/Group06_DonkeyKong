@@ -4,49 +4,77 @@ using System.Collections;
 
 public class MarioController : MonoBehaviour
 {
-    public float speed;
-    bool facingRight = true;
+    public float movespeed;
+    public float jumpHeight;
 
+    bool facingRight = true;
+    
     private Rigidbody2D rb;
+
+    public bool onLadder;
+
+    public float climbSpeed;
+    private float climbVelocity;
+    private float gravityStore;
 
     // Use this for initialization
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        gravityStore = rb.gravityScale;         //Store gravity of player at initialization
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {
-        // horizontal move
-        float moveHorizontal = Input.GetAxis("Horizontal");
-
-        // jump
-        bool moveUp = Input.GetButton("Jump");
-        float amountMoveUp;
-        if (moveUp)
-        {
-            amountMoveUp = 2;
-        }
-        else
-        {
-            amountMoveUp = 0;
-        }
-
+    {   
         
-        Vector2 movement = new Vector2(moveHorizontal, amountMoveUp);
-        rb.AddForce(movement * speed);
-
-        if(moveHorizontal>0 &&!facingRight)     //If the player moves right but is not facing right yet, flip the player
-        {
-            Flip();
-        }
-        else if(moveHorizontal<0 && facingRight) 
-        {
-            Flip();
-        }
 
     }
+    void Update()
+    {   
+        //Horizontal Movement
+        if (Input.GetKey("right"))
+        {
+            rb.velocity = new Vector2(movespeed, rb.velocity.y);
+        }
+
+        if (Input.GetKey("left"))
+        {
+            rb.velocity = new Vector2(-movespeed, rb.velocity.y);
+        }
+        // Jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+        }
+        // Flip
+        if (Input.GetKey("right") == true && !facingRight)     //If the player moves right but is not facing right yet, flip the player
+        {
+            Flip();
+        }
+        else if (Input.GetKey("left") == true && facingRight)
+        {
+            Flip();
+        }
+
+        // Vertical movement on ladder
+        if (onLadder)             
+        {
+            //Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>,);
+
+            rb.gravityScale = 0f;
+
+            climbVelocity = climbSpeed * Input.GetAxis("Vertical");
+
+            rb.velocity = new Vector2(rb.velocity.x,climbVelocity);
+        }
+        if(!onLadder)       // Reset gravity to normal when player gets off the ladder
+        {
+            rb.gravityScale = gravityStore;
+        }
+    }
+    // Flips the player when changing direction
     void Flip()
     {
         facingRight = !facingRight;
@@ -54,4 +82,6 @@ public class MarioController : MonoBehaviour
         theScale.x *= -1;                               //Flip the x axis
         transform.localScale = theScale;                //Apply the new local Scale
     }
+   
 }
+
