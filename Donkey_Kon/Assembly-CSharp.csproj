@@ -45,7 +45,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BarController.cs" />
      <Compile Include="Assets\Boss_AI.cs" />
+     <Compile Include="Assets\Scripts\BarrelManager.cs" />
      <Compile Include="Assets\Scripts\LadderController.cs" />
      <Compile Include="Assets\Scripts\MarioController.cs" />
  <Reference Include="UnityEngine.UI">
