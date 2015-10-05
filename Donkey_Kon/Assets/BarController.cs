@@ -14,7 +14,7 @@ public class BarController : MonoBehaviour {
 	    if (thePlayer.onLadder)
         {
             
-            Physics2D.IgnoreCollision(thePlayer.rb.GetComponent<BoxCollider2D>,GetComponent<BoxCollider2D>);
+            Physics2D.IgnoreCollision(thePlayer.rb.GetComponent<BoxCollider2D>(),GetComponent<BoxCollider2D>());
         }
     }
 }

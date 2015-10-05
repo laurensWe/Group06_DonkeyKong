@@ -8,9 +8,8 @@ public class MarioController : MonoBehaviour
     public float jumpHeight;
 
     bool facingRight = true;
-    
-    private Rigidbody2D rb;
 
+    public Rigidbody2D rb;
     public bool onLadder;
 
     public float climbSpeed;
@@ -27,12 +26,12 @@ public class MarioController : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {   
-        
+    {
+
 
     }
     void Update()
-    {   
+    {
         //Horizontal Movement
         if (Input.GetKey("right"))
         {
@@ -59,7 +58,7 @@ public class MarioController : MonoBehaviour
         }
 
         // Vertical movement on ladder
-        if (onLadder)             
+        if (onLadder)
         {
             //Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>,);
 
@@ -67,9 +66,9 @@ public class MarioController : MonoBehaviour
 
             climbVelocity = climbSpeed * Input.GetAxis("Vertical");
 
-            rb.velocity = new Vector2(rb.velocity.x,climbVelocity);
+            rb.velocity = new Vector2(rb.velocity.x, climbVelocity);
         }
-        if(!onLadder)       // Reset gravity to normal when player gets off the ladder
+        if (!onLadder)       // Reset gravity to normal when player gets off the ladder
         {
             rb.gravityScale = gravityStore;
         }
@@ -82,6 +81,6 @@ public class MarioController : MonoBehaviour
         theScale.x *= -1;                               //Flip the x axis
         transform.localScale = theScale;                //Apply the new local Scale
     }
-   
+
 }
 
