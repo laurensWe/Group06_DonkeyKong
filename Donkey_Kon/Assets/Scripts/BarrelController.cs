@@ -23,8 +23,12 @@ public class BarrelController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("ChangeDirection"))
         {
-            direction = new Vector2(-1 * direction.x, direction.y);
+            direction = new Vector2(-1 * direction.x, direction.y - 1);
 
+        }
+        if (other.CompareTag("DestroyBar"))
+        {
+            DestroyImmediate(gameObject);
         }
     }
 }
