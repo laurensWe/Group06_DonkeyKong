@@ -16,6 +16,11 @@ public class MarioController : MonoBehaviour
     private float climbVelocity;
     private float gravityStore;
 
+    public Transform groundCheck;        
+    public float groundCheckRadius;
+    public LayerMask whatIsGround;
+    private bool grounded;
+
     // Use this for initialization
     void Start()
     {
@@ -27,7 +32,7 @@ public class MarioController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
     }
     void Update()
@@ -43,7 +48,7 @@ public class MarioController : MonoBehaviour
             rb.velocity = new Vector2(-movespeed, rb.velocity.y);
         }
         // Jump
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
         }
