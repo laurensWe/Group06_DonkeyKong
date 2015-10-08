@@ -21,10 +21,13 @@ public class MarioController : MonoBehaviour
     public LayerMask whatIsGround;
     private bool grounded;
 
+    private Animator anim;
+
     // Use this for initialization
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         gravityStore = rb.gravityScale;         //Store gravity of player at initialization
     }
@@ -33,6 +36,8 @@ public class MarioController : MonoBehaviour
     void FixedUpdate()
     {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+
+ 
 
     }
     void Update()
@@ -61,6 +66,11 @@ public class MarioController : MonoBehaviour
         {
             Flip();
         }
+
+        anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+
+        anim.SetBool("grounded", grounded);
+
 
         // Vertical movement on ladder
         if (onLadder)
