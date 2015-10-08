@@ -21,6 +21,8 @@ public class MarioController : MonoBehaviour
     public LayerMask whatIsGround;
     private bool grounded;
 
+    private bool doubleJumped;
+
     private Animator anim;
 
     // Use this for initialization
@@ -52,10 +54,19 @@ public class MarioController : MonoBehaviour
         {
             rb.velocity = new Vector2(-movespeed, rb.velocity.y);
         }
-        // Jump
+        // Jump and double Jump
+        if (grounded)
+        {
+            doubleJumped = false;
+        }
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && !doubleJumped && !grounded)
+        {
+            Jump();
+            doubleJumped = true;
         }
         // Flip
         if (Input.GetKey("right") == true && !facingRight)     //If the player moves right but is not facing right yet, flip the player
@@ -67,6 +78,7 @@ public class MarioController : MonoBehaviour
             Flip();
         }
 
+        //Animation
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
 
         anim.SetBool("grounded", grounded);
@@ -87,6 +99,11 @@ public class MarioController : MonoBehaviour
         {
             rb.gravityScale = gravityStore;
         }
+    }
+    //
+    void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
     }
     // Flips the player when changing direction
     void Flip()
