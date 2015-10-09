@@ -85,6 +85,8 @@ public class MarioController : MonoBehaviour
 
         anim.SetBool("grounded", grounded);
 
+        anim.SetBool("onLadder", onLadder);
+
 
         // Vertical movement on ladder
         if (onLadder)
