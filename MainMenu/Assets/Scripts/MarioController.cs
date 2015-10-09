@@ -11,6 +11,8 @@ public class MarioController : MonoBehaviour
 
     public Rigidbody2D rb;
     public bool onLadder;
+    private bool vertbutton;
+    private bool climbing;
 
     public float climbSpeed;
     private float climbVelocity;
@@ -32,6 +34,8 @@ public class MarioController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         gravityStore = rb.gravityScale;         //Store gravity of player at initialization
+
+        vertbutton = false;
     }
 
     // Update is called once per frame
@@ -97,6 +101,23 @@ public class MarioController : MonoBehaviour
         {
             rb.gravityScale = gravityStore;
         }
+        //
+        if (Input.GetKey("down") || Input.GetKey("up"))
+            vertbutton = true;
+        else vertbutton = false;
+
+        if (onLadder && vertbutton)
+        {
+            climbing = true;
+        }
+        else
+        {
+            climbing = false;
+        }
+
+        var bars = GameObject.FindGameObjectsWithTag("BarWithLadder");
+        foreach (var bar in bars)
+            Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>(), bar.GetComponent<BoxCollider2D>(), climbing);
     }
     //
     void Jump()
