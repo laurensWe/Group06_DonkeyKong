@@ -89,19 +89,18 @@ public class MarioController : MonoBehaviour
         // Vertical movement on ladder
         if (onLadder)
         {
-            //Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>,);
 
             rb.gravityScale = 0f;
 
             climbVelocity = climbSpeed * Input.GetAxis("Vertical");
 
-            rb.velocity = new Vector2(rb.velocity.x, climbVelocity);
+            rb.velocity = new Vector2(0.7f*rb.velocity.x, climbVelocity);
         }
         if (!onLadder)       // Reset gravity to normal when player gets off the ladder
         {
             rb.gravityScale = gravityStore;
         }
-        //
+        // Vertical movement through bar
         if (Input.GetKey("down") || Input.GetKey("up"))
             vertbutton = true;
         else vertbutton = false;
@@ -119,7 +118,7 @@ public class MarioController : MonoBehaviour
         foreach (var bar in bars)
             Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>(), bar.GetComponent<BoxCollider2D>(), climbing);
     }
-    //
+    // Jump method
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
