@@ -39,8 +39,6 @@ public class MarioController : MonoBehaviour
     {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
- 
-
     }
     void Update()
     {

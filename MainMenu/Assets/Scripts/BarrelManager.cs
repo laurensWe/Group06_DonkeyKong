@@ -11,6 +11,7 @@ public class BarrelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         InvokeRepeating("Spawn", spawnTime, spawnTime);
+
 	}
 
 
@@ -24,5 +25,9 @@ public class BarrelManager : MonoBehaviour {
 //        }
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
         Instantiate(barrel, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+
 	}
+
+    
+
 }

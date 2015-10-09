@@ -5,18 +5,34 @@ public class BarrelController : MonoBehaviour {
 
     public float speed;
     public Vector2 direction;
+    private int scoreValue = 10;
 
     private Rigidbody2D rb;
 
-	// Use this for initialization
-	void Start () {
+    public Transform JumpCheck;
+    public float JumpCheckRadius;
+    public LayerMask PlayerLayer;
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody2D>();
 
 	}
 
+    // Fixed update is used when we work with physics.
+    void FixedUpdate()
+    {
+        if (Physics2D.OverlapCircle(JumpCheck.position, JumpCheckRadius, PlayerLayer))
+        {
+            ScoreManager.score += scoreValue;
+        }
+    }
+
     // Update is called once per frame
     void Update() {
         rb.velocity = new Vector2(speed * direction.x, speed * direction.y);
+
+        JumpCheck.position = new Vector2(this.transform.position.x, this.transform.position.y + 0.75f);
 
 	}
 
@@ -28,7 +44,10 @@ public class BarrelController : MonoBehaviour {
         }
         if (other.CompareTag("DestroyBar"))
         {
-            DestroyImmediate(gameObject);
+            // should be implemented, does not work at the moment.
+            //DestroyImmediate(gameObject);
         }
     }
+
+    
 }

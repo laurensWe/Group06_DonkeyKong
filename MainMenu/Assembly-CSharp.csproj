@@ -45,15 +45,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DonkeyController.cs" />
-     <Compile Include="Assets\JumpOverScript.cs" />
-     <Compile Include="Assets\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\BarrelController.cs" />
      <Compile Include="Assets\Scripts\BarrelManager.cs" />
+     <Compile Include="Assets\Scripts\DonkeyController.cs" />
      <Compile Include="Assets\Scripts\ExitGame.cs" />
+     <Compile Include="Assets\Scripts\JumpOverScript.cs" />
      <Compile Include="Assets\Scripts\LadderController.cs" />
      <Compile Include="Assets\Scripts\MarioController.cs" />
      <Compile Include="Assets\Scripts\PeachController.cs" />
+     <Compile Include="Assets\Scripts\ScoreManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
