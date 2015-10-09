@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\JumpOverScript.cs" />
      <Compile Include="Assets\Scripts\LadderController.cs" />
      <Compile Include="Assets\Scripts\MarioController.cs" />
+     <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PeachController.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
  <Reference Include="UnityEngine.UI">
