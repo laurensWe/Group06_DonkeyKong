@@ -6,7 +6,6 @@ using System.Diagnostics;
 public class JumpOverScript : MonoBehaviour
 {
     public int scoreValue;
-    Stopwatch stopWatch = new Stopwatch();
 
     // Use this for initialization
     void Start()
@@ -21,6 +20,7 @@ public class JumpOverScript : MonoBehaviour
         {    
             ScoreManager.score += scoreValue;
             // play animation that you'll receive points
+            Destroy(gameObject);
         }
     }
 }
