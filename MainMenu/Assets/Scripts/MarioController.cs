@@ -18,7 +18,7 @@ public class MarioController : MonoBehaviour
     private float climbVelocity;
     private float gravityStore;
 
-    public Transform groundCheck;        
+    public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     private bool grounded;
@@ -26,6 +26,8 @@ public class MarioController : MonoBehaviour
     private bool doubleJumped;
 
     private Animator anim;
+
+    private int scoreValue;
 
     // Use this for initialization
     void Start()
@@ -96,7 +98,7 @@ public class MarioController : MonoBehaviour
 
             climbVelocity = climbSpeed * Input.GetAxis("Vertical");
 
-            rb.velocity = new Vector2(0.7f*rb.velocity.x, climbVelocity);
+            rb.velocity = new Vector2(0.7f * rb.velocity.x, climbVelocity);
         }
         if (!onLadder)       // Reset gravity to normal when player gets off the ladder
         {
