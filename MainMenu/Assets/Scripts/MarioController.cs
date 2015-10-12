@@ -6,7 +6,7 @@ public class MarioController : MonoBehaviour
 {
     public float movespeed;
     public float jumpHeight;
-
+    public AudioClip clip;
     bool facingRight = true;
 
     public Rigidbody2D rb;
@@ -129,6 +129,7 @@ public class MarioController : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+        PlayMusic();
     }
     // Flips the player when changing direction
     void Flip()
@@ -139,5 +140,9 @@ public class MarioController : MonoBehaviour
         transform.localScale = theScale;                //Apply the new local Scale
     }
 
+    void PlayMusic()
+    { 
+        AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
+    }
 }
 
