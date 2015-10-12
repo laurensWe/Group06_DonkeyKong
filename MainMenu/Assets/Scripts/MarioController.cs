@@ -117,13 +117,17 @@ public class MarioController : MonoBehaviour
         {
             climbing = false;
         }
-
         var bars = GameObject.FindGameObjectsWithTag("BarWithLadder");
         foreach (var bar in bars)
             Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>(), bar.GetComponent<BoxCollider2D>(), climbing);
         var donkeybars = GameObject.FindGameObjectsWithTag("DonkeyBar");
         foreach (var bar in donkeybars)
             Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>(), bar.GetComponent<BoxCollider2D>(), climbing);
+        //Game Over Menu
+        if (transform.position.y < -8)
+        {
+            Application.LoadLevel("GameOver");
+        }
     }
     // Jump method
     void Jump()
