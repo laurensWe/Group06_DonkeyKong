@@ -123,6 +123,7 @@ public class MarioController : MonoBehaviour
         var donkeybars = GameObject.FindGameObjectsWithTag("DonkeyBar");
         foreach (var bar in donkeybars)
             Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>(), bar.GetComponent<BoxCollider2D>(), climbing);
+        
         //Game Over Menu
         if (transform.position.y < -8)
         {
@@ -147,6 +148,14 @@ public class MarioController : MonoBehaviour
     void PlayMusic()
     { 
         AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
+    }
+
+    void onCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Barrel")){
+            Destroy(gameObject);
+            Application.LoadLevel("GameOver");
+        }
     }
 }
 

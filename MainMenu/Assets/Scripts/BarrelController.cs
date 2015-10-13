@@ -26,6 +26,7 @@ public class BarrelController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         
     }
 
@@ -91,6 +92,10 @@ public class BarrelController : MonoBehaviour
                 foreach (var ladderbar in ladderbars)
                     Physics2D.IgnoreCollision(rb.GetComponent<Collider2D>(), ladderbar.GetComponent<Collider2D>(), false);
             }
+        }
+
+        if(transform.position.y < -8){
+            Destroy(gameObject);
         }
 
     }
