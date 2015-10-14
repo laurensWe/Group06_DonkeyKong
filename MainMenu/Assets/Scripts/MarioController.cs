@@ -25,6 +25,7 @@ public class MarioController : MonoBehaviour
     private bool grounded;
 
     private bool doubleJumped;
+    private bool marioDeath;
 
     private Animator anim;
 
@@ -33,12 +34,10 @@ public class MarioController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
         gravityStore = rb.gravityScale;         //Store gravity of player at initialization
-
         vertbutton = false;
+        marioDeath = false;
     }
 
     // Update is called once per frame
@@ -126,8 +125,19 @@ public class MarioController : MonoBehaviour
             Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>(), bar.GetComponent<BoxCollider2D>(), climbing);
         
         //Game Over Menu
-        if (transform.position.y < -8)
+        if ((transform.position.y < -8) || marioDeath)
         {
+            // first compare highscore
+            if(ScoreManager.score > ScoreManager.highScore)
+            {
+                PlayerPrefs.SetInt("highScore", ScoreManager.score);
+            }
+
+            // if hit by barrel
+            if(marioDeath)
+            {
+                // play sound and wait a few moments for the GameOver to start
+            }
             Application.LoadLevel("GameOver");
         }
     }
@@ -158,9 +168,8 @@ public class MarioController : MonoBehaviour
 
     void onCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Barrel")){     
-            Destroy(gameObject);
-            Application.LoadLevel("GameOver");
+        if (other.gameObject.CompareTag("Barrel")){
+            marioDeath = true;
         }
     }
 }

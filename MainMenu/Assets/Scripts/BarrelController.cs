@@ -116,13 +116,6 @@ public class BarrelController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Barrel collides with mario
-        if (other.CompareTag("Player"))
-        {
-            
-            // play animation of death and open Game Over Menu. 
-        }
-
         //Barrel collides with Ladder
         if (other.CompareTag("Ladder"))
         {

@@ -17,8 +17,8 @@ public class JumpOverScript : MonoBehaviour
     {
          
         if (other.CompareTag("Player"))
-        {    
-            ScoreManager.score += scoreValue;
+        {
+            ScoreManager.score += scoreValue;   
             // play animation that you'll receive points
             PlayMusic();
             Destroy(gameObject);
