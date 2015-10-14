@@ -7,6 +7,7 @@ public class MarioController : MonoBehaviour
     public float movespeed;
     public float jumpHeight;
     public AudioClip clip;
+    public AudioClip death;
     bool facingRight = true;
 
     public Rigidbody2D rb;
@@ -150,9 +151,14 @@ public class MarioController : MonoBehaviour
         AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
     }
 
+    void PlayMusic1()
+    {
+        AudioSource.PlayClipAtPoint(death, new Vector3(5, 1, 2));
+    }
+
     void onCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Barrel")){
+        if (other.gameObject.CompareTag("Barrel")){     
             Destroy(gameObject);
             Application.LoadLevel("GameOver");
         }

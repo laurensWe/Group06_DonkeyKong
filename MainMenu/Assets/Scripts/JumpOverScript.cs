@@ -20,8 +20,9 @@ public class JumpOverScript : MonoBehaviour
         {    
             ScoreManager.score += scoreValue;
             // play animation that you'll receive points
-            Destroy(gameObject);
             PlayMusic();
+            Destroy(gameObject);
+            
         }
     }
 

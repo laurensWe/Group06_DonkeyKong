@@ -119,6 +119,7 @@ public class BarrelController : MonoBehaviour
         // Barrel collides with mario
         if (other.CompareTag("Player"))
         {
+            
             // play animation of death and open Game Over Menu. 
         }
 
