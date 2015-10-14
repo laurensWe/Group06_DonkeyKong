@@ -130,7 +130,7 @@ public class MarioController : MonoBehaviour
             // first compare highscore
             if(ScoreManager.score > ScoreManager.highScore)
             {
-                PlayerPrefs.SetInt("highScore", ScoreManager.score);
+                PlayerPrefs.SetInt("highScore", ScoreManager.score);  
             }
 
             // if hit by barrel
@@ -166,7 +166,7 @@ public class MarioController : MonoBehaviour
         AudioSource.PlayClipAtPoint(death, new Vector3(5, 1, 2));
     }
 
-    void onCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Barrel")){
             marioDeath = true;

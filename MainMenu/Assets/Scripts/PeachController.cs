@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class PeachController : MonoBehaviour {
+
     public int ScoreKeeper;
+
 	// Use this for initialization
 	void Start () {
 	

@@ -7,6 +7,7 @@ public class JumpOverScript : MonoBehaviour
 {
     public int scoreValue;
     public AudioClip clip;
+
     // Use this for initialization
     void Start()
     {

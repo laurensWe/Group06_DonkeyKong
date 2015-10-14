@@ -44,16 +44,13 @@ public class BarrelController : MonoBehaviour
         if (JumpCheck != null)
         {
             JumpCheck.position = new Vector2(this.transform.position.x, this.transform.position.y + 0.75f);
+            // ignore the jumpcheck collision
+            var ladders = GameObject.FindGameObjectsWithTag("Ladder");
+            foreach (var ladder in ladders)
+                Physics2D.IgnoreCollision(JumpCheck.GetComponent<Collider2D>(), ladder.GetComponent<Collider2D>(), true);
+        }   
 
-        }
-
-        // ignore the jumpcheck collision
-        var ladders = GameObject.FindGameObjectsWithTag("Ladder");
-        foreach (var ladder in ladders)
-            Physics2D.IgnoreCollision(JumpCheck.GetComponent<Collider2D>(), ladder.GetComponent<Collider2D>(), true);
-
-
-        // with a chance of 50% the barrel wil go down the ladder.
+        // with a chance the barrel wil go down the ladder.
         if (!onLadder)
         {
             rb.velocity = new Vector2(speed * direction.x, speed * direction.y);

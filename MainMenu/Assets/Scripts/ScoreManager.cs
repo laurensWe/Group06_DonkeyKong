@@ -13,12 +13,23 @@ public class ScoreManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = 0;
-        highScore = PlayerPrefs.GetInt("highScore");
-        highScoreText.text = "Highscore: " + highScore;
+        if (PlayerPrefs.HasKey("highScore"))
+        {
+            Debug.Log("has key");
+            highScore = PlayerPrefs.GetInt("highScore");
+        }
+        else
+        {
+           Debug.Log("has no key");
+           highScore = 0;
+        }
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(highScore);
         scoreText.text = "Score: " + score;
-	}
+        highScoreText.text = "Highscore: " + highScore;
+    }
 }
