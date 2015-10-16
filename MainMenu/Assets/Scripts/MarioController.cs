@@ -89,6 +89,8 @@ public class MarioController : MonoBehaviour
 
         anim.SetBool("onLadder", onLadder);
 
+        anim.SetBool("MarioDeath", marioDeath);
+
 
         // Vertical movement on ladder
         if (onLadder && vertbutton)
@@ -130,10 +132,17 @@ public class MarioController : MonoBehaviour
             // if hit by barrel
             if(marioDeath)
             {
+                var barrels = GameObject.FindGameObjectsWithTag("Barrel");
+                foreach (var barrel in barrels)
+                    Destroy(barrel);
                 StartCoroutine("wait");
                 // play animation of mario death. (this is a child of Mario(player)).
             }
-            Application.LoadLevel("GameOver");
+            else
+            {
+                Application.LoadLevel("GameOver");
+            }
+           
         }
     }
     // Jump method
@@ -171,7 +180,6 @@ public class MarioController : MonoBehaviour
     IEnumerator wait()
     {
         yield return new WaitForSeconds(2);
-        //Destroy(gameObject);
         Application.LoadLevel("GameOver");
     }
 }
