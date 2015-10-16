@@ -127,16 +127,11 @@ public class MarioController : MonoBehaviour
         //Game Over Menu
         if ((transform.position.y < -8) || marioDeath)
         {
-            // first compare highscore
-            if(ScoreManager.score > ScoreManager.highScore)
-            {
-                PlayerPrefs.SetInt("highScore", ScoreManager.score);  
-            }
-
             // if hit by barrel
             if(marioDeath)
             {
-                // play sound and wait a few moments for the GameOver to start
+                StartCoroutine("wait");
+                // play animation of mario death. (this is a child of Mario(player)).
             }
             Application.LoadLevel("GameOver");
         }
@@ -171,6 +166,13 @@ public class MarioController : MonoBehaviour
         if (other.gameObject.CompareTag("Barrel")){
             marioDeath = true;
         }
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(2);
+        //Destroy(gameObject);
+        Application.LoadLevel("GameOver");
     }
 }
 

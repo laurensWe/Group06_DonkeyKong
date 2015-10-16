@@ -10,8 +10,6 @@ public class BarrelManager : MonoBehaviour {
 
     private float Timer;
     
-
-
 	void Start () {
  
     }

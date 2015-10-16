@@ -7,7 +7,7 @@ public class DonkeyController : MonoBehaviour
 
     public bool Action;
     private int randomNumber;
-    private int Timer1;
+
     public Animator anim;
     // public Animator anim;
 
@@ -15,7 +15,6 @@ public class DonkeyController : MonoBehaviour
     void Start()
     {
         anim.GetComponent<Animator>();
-        Timer1 = 0;
 
     }
 

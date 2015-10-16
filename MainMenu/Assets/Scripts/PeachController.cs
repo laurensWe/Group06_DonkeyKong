@@ -19,11 +19,12 @@ public class PeachController : MonoBehaviour {
 
         if (other.CompareTag("Player"))
         {
-
-            // play animation that you'll receive points
-            //Destroy(gameObject);
-            ScoreKeeper = ScoreManager.score;
-            //StartCoroutine("wait");
+            // first compare highscore
+            if (ScoreManager.score > ScoreManager.highScore)
+            {
+                PlayerPrefs.SetInt("highScore", ScoreManager.score);
+            }
+            PlayerPrefs.SetInt("currentScore", ScoreManager.score);
 
             GameWon = true;
         }

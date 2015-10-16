@@ -32,4 +32,6 @@ public class ScoreManager : MonoBehaviour {
         scoreText.text = "Score: " + score;
         highScoreText.text = "Highscore: " + highScore;
     }
+
+
 }
