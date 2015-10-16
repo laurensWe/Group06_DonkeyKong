@@ -1,30 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DonkeyController : MonoBehaviour {
+
+public class DonkeyController : MonoBehaviour
+{
 
     public bool Action;
-    private float randomNumber;
+    private int randomNumber;
     private int Timer1;
     public Animator anim;
     // public Animator anim;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         anim.GetComponent<Animator>();
         Timer1 = 0;
+
     }
 
     void Update()
     {
-        randomNumber = Random.Range(1, 100);
+        randomNumber = Random.Range(1, 500);
         if (randomNumber <= 2)
         {
             Action = true;
-            anim.SetBool("Action", Action);
-            Timer1 = 1;
+            StartCoroutine(Example());
         }
-            
-        
+
+
+    }
+
+    IEnumerator Example()
+    {
+        anim.SetBool("Action", true);
+        yield return new WaitForSeconds(1);
+        anim.SetBool("Action", false);
     }
 }
