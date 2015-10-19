@@ -4,12 +4,14 @@ using System;
 
 public class PeachController : MonoBehaviour {
 
-    public int ScoreKeeper;
     private bool GameWon;
     private Animator anim;
+    public ParticleSystem fireworks1;
+    public ParticleSystem fireworks2;
+    public ParticleSystem fireworks3;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         anim = GetComponent<Animator>();    
 	}
@@ -36,6 +38,9 @@ public class PeachController : MonoBehaviour {
         anim.SetBool("GameWon", GameWon);
         if (GameWon==true)
         {
+            fireworks1.Play();
+            fireworks2.Play();
+            fireworks3.Play();
             StartCoroutine("wait");
         }
     }

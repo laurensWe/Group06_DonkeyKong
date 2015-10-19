@@ -5,8 +5,11 @@ using System.Collections;
 public class DonkeyController : MonoBehaviour
 {
 
-    public bool Action;
+    private bool Action;
     private int randomNumber;
+
+    public ParticleSystem smokey1;
+    public ParticleSystem smokey2;
 
     public Animator anim;
     // public Animator anim;
@@ -33,6 +36,8 @@ public class DonkeyController : MonoBehaviour
     IEnumerator Example()
     {
         anim.SetBool("Action", true);
+        smokey1.Play();
+        smokey2.Play();
         yield return new WaitForSeconds(1);
         anim.SetBool("Action", false);
     }
