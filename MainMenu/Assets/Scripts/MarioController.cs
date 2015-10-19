@@ -32,8 +32,7 @@ public class MarioController : MonoBehaviour
     private int scoreValue;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start(){
         anim = GetComponent<Animator>();
         gravityStore = rb.gravityScale;         //Store gravity of player at initialization
         vertbutton = false;
@@ -41,44 +40,35 @@ public class MarioController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
     }
-    void Update()
-    {
+    void Update(){
         //Horizontal Movement
-        if (Input.GetKey("right"))
-        {
+        if (Input.GetKey("right")){
             rb.velocity = new Vector2(movespeed, rb.velocity.y);
         }
 
-        if (Input.GetKey("left"))
-        {
+        if (Input.GetKey("left")){
             rb.velocity = new Vector2(-movespeed, rb.velocity.y);
         }
         // Jump and double Jump
-        if (grounded)
-        {
+        if (grounded){
             doubleJumped = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && grounded){
             Jump();
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !doubleJumped && !grounded)
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && !doubleJumped && !grounded){
             Jump();
             doubleJumped = true;
         }
         // Flip
-        if (Input.GetKey("right") == true && !facingRight)     //If the player moves right but is not facing right yet, flip the player
-        {
+        if (Input.GetKey("right") == true && !facingRight){   //If the player moves right but is not facing right yet, flip the player
             Flip();
         }
-        else if (Input.GetKey("left") == true && facingRight)
-        {
+        else if (Input.GetKey("left") == true && facingRight){
             Flip();
         }
 
@@ -132,11 +122,8 @@ public class MarioController : MonoBehaviour
             // if hit by barrel
             if (marioDeath)
             {
-                var barrels = GameObject.FindGameObjectsWithTag("Barrel");
-                foreach (var barrel in barrels)
-                    Destroy(barrel);
+                Destroy(rb);
                 StartCoroutine("wait");
-                // play animation of mario death. (this is a child of Mario(player)).
             }
             else
             {
@@ -145,36 +132,35 @@ public class MarioController : MonoBehaviour
 
         }
     }
-    // Jump method
-    void Jump()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-        PlayMusic();
-    }
-    // Flips the player when changing direction
-    void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;        //Get the local Scale
-        theScale.x *= -1;                               //Flip the x axis
-        transform.localScale = theScale;                //Apply the new local Scale
-    }
 
-    void PlayMusic()
-    {
-        AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
-    }
+// Jump method
+void Jump(){
+            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            PlayMusic();
+        }
+        // Flips the player when changing direction
+        void Flip(){
+            facingRight = !facingRight;
+            Vector3 theScale = transform.localScale;        //Get the local Scale
+            theScale.x *= -1;                               //Flip the x axis
+            transform.localScale = theScale;                //Apply the new local Scale
+        }
 
-    void PlayMusic1()
-    {
-        AudioSource.PlayClipAtPoint(death, new Vector3(5, 1, 2));
-    }
+        void PlayMusic(){
+            AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
+        }
+
+        void PlayMusic1(){
+            AudioSource.PlayClipAtPoint(death, new Vector3(5, 1, 2));
+        }
+
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Barrel"))
         {
             marioDeath = true;
+            Destroy(other.gameObject);
         }
         if (other.transform.tag == "MovingBar")
         {
@@ -191,7 +177,7 @@ public class MarioController : MonoBehaviour
 
     IEnumerator wait()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         Application.LoadLevel("GameOver");
     }
 }

@@ -2,10 +2,7 @@
 using System.Collections;
 
 
-public class DonkeyController : MonoBehaviour
-{
-
-    private bool Action;
+public class DonkeyController : MonoBehaviour{ 
     private int randomNumber;
 
     public ParticleSystem smokey1;
@@ -15,26 +12,18 @@ public class DonkeyController : MonoBehaviour
     // public Animator anim;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start(){
         anim.GetComponent<Animator>();
-
     }
 
-    void Update()
-    {
+    void Update(){
         randomNumber = Random.Range(1, 500);
-        if (randomNumber <= 2)
-        {
-            Action = true;
+        if (randomNumber <= 2){
             StartCoroutine(Example());
         }
-
-
     }
 
-    IEnumerator Example()
-    {
+    IEnumerator Example(){
         anim.SetBool("Action", true);
         smokey1.Play();
         smokey2.Play();
