@@ -11,7 +11,7 @@ public class PeachController : MonoBehaviour {
     public ParticleSystem fireworks2;
     public ParticleSystem fireworks3;
     public AudioClip firebang;
-
+    public String nextScene;
 
     // Use this for initialization
     void Start ()
@@ -50,7 +50,6 @@ public class PeachController : MonoBehaviour {
 
     IEnumerator wait(){
         yield return new WaitForSeconds(2);
-        Destroy(gameObject);
-        Application.LoadLevel("Game_Won");  
+        Application.LoadLevel(nextScene);  
     }
 }

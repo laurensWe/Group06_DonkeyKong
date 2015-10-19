@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        score = 0;
+        score = PlayerPrefs.GetInt("currentScore");
         if (PlayerPrefs.HasKey("highScore"))
         {
             Debug.Log("has key");

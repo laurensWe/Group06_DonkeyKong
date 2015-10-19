@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\GameOverText.cs" />
      <Compile Include="Assets\Scripts\JumpOverScript.cs" />
      <Compile Include="Assets\Scripts\LadderController.cs" />
+     <Compile Include="Assets\Scripts\Level1Won.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MarioController.cs" />
      <Compile Include="Assets\Scripts\MovingBarScript.cs" />
