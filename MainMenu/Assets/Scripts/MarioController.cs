@@ -181,6 +181,13 @@ public class MarioController : MonoBehaviour
             transform.parent = other.transform;
         }
     }
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.transform.tag == "MovingBar")
+        {
+            transform.parent = null;
+        }
+    }
 
     IEnumerator wait()
     {

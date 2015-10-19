@@ -20,5 +20,10 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("highScore", 0);
         }
     }
+    public void StartGame2()
+    {
+        Application.LoadLevel("level2");
+    }
+
 }
 
