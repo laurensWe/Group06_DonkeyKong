@@ -22,6 +22,9 @@ public class BarrelManager : MonoBehaviour {
             Instantiate(barrel, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
             Timer = Time.time + Random.Range(2, 5);
         }
+        var barrels = GameObject.FindGameObjectsWithTag("Barrel");
+        foreach (var barrel in barrels)
+            Physics2D.IgnoreCollision(barrel.GetComponent<CircleCollider2D>(), barrel.GetComponent<CircleCollider2D>());
     }
 
 }

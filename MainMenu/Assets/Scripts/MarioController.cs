@@ -125,12 +125,12 @@ public class MarioController : MonoBehaviour
         var donkeybars = GameObject.FindGameObjectsWithTag("DonkeyBar");
         foreach (var bar in donkeybars)
             Physics2D.IgnoreCollision(rb.GetComponent<BoxCollider2D>(), bar.GetComponent<BoxCollider2D>(), climbing);
-        
+
         //Game Over Menu
         if ((transform.position.y < -8) || marioDeath)
         {
             // if hit by barrel
-            if(marioDeath)
+            if (marioDeath)
             {
                 var barrels = GameObject.FindGameObjectsWithTag("Barrel");
                 foreach (var barrel in barrels)
@@ -142,7 +142,7 @@ public class MarioController : MonoBehaviour
             {
                 Application.LoadLevel("GameOver");
             }
-           
+
         }
     }
     // Jump method
@@ -161,7 +161,7 @@ public class MarioController : MonoBehaviour
     }
 
     void PlayMusic()
-    { 
+    {
         AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
     }
 
@@ -172,8 +172,13 @@ public class MarioController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Barrel")){
+        if (other.gameObject.CompareTag("Barrel"))
+        {
             marioDeath = true;
+        }
+        if (other.transform.tag == "MovingBar")
+        {
+            transform.parent = other.transform;
         }
     }
 
