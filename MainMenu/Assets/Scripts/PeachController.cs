@@ -6,9 +6,12 @@ public class PeachController : MonoBehaviour {
 
     private bool GameWon;
     private Animator anim;
+
     public ParticleSystem fireworks1;
     public ParticleSystem fireworks2;
     public ParticleSystem fireworks3;
+    public AudioClip firebang;
+
 
     // Use this for initialization
     void Start ()
@@ -36,8 +39,8 @@ public class PeachController : MonoBehaviour {
     void Update()
     {
         anim.SetBool("GameWon", GameWon);
-        if (GameWon==true)
-        {
+        if (GameWon==true){
+            AudioSource.PlayClipAtPoint(firebang, new Vector3(0,0,0));
             fireworks1.Play();
             fireworks2.Play();
             fireworks3.Play();
@@ -45,11 +48,9 @@ public class PeachController : MonoBehaviour {
         }
     }
 
-    IEnumerator wait()
-    {
+    IEnumerator wait(){
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
-        Application.LoadLevel("Game_Won");
-        
+        Application.LoadLevel("Game_Won");  
     }
 }
